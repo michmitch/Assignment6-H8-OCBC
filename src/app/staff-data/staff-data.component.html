@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12" >
+        <button [style.display]="isButtonShowed" (click)="showForm()" class="btn btn-primary btn-lg">Add Staff</button>
+        <app-staff-form class="mx-auto"  [style.display]="isFormShowed"></app-staff-form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let staff of staffService.staffList">
+                    <td> {{staff.title | titlecase}}. {{staff.firstName | titlecase}} {{staff.lastName | titlecase}} </td>
+                    <td> {{staff.role}} </td>
+                    <td> {{staff.email}} </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" (click)="fillFormForEdit(staff)">
+                            <i class="bi bi-pencil-fill"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm me-1" (click)="deleteStaff(staff.id, staff.firstName + ' ' + staff.lastName)">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

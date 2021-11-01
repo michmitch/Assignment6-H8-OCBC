@@ -1,0 +1,71 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="Id" [value]="staffService.formData.id"/>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="Title" class="form-control form-control-lg" 
+        placeholder="Title" #Title="ngModel" [(ngModel)]="staffService.formData.title" required>
+        <span *ngIf="(Title.invalid && Title.touched)">
+            Title required
+        </span>
+    </div>
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="FirstName" class="form-control form-control-lg" 
+        placeholder="First Name" #FirstName="ngModel" [(ngModel)]="staffService.formData.firstName" required>
+        <span *ngIf="(FirstName.invalid && FirstName.touched)">
+            First Name required
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="LastName" class="form-control form-control-lg" 
+        placeholder="Last Name" #LastName="ngModel" [(ngModel)]="staffService.formData.lastName" required>
+        <span *ngIf="(LastName.invalid && LastName.touched)">
+            Last Name required
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Role</label>
+        <select class="form-control form-control-lg" name="Role" #Role="ngModel" [(ngModel)]="staffService.formData.role" required>
+            <option value="">-- Input Here --</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select> 
+
+        <!-- <input type="text" name="Role" class="form-control form-control-lg" 
+        placeholder="Role" #Role="ngModel" [(ngModel)]="staffService.formData.role" required> -->
+        <span *ngIf="(Role.invalid && Role.touched)">
+            Role required
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="Email" class="form-control form-control-lg" 
+        placeholder="Email" #Email="ngModel" [(ngModel)]="staffService.formData.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]+$" >
+        <span *ngIf="Email.invalid && Email.touched && Email.errors?.pattern">
+            Valid Email Type Required
+        </span>
+    </div>
+    
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="Password" class="form-control form-control-lg" 
+        placeholder="Password" #Password="ngModel" [(ngModel)]="staffService.formData.password" required
+        minlength="6">
+        <span *ngIf="Password.invalid && Password.touched">
+            Password Required 6 Characters Or More
+        </span>
+    </div>
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" name="ConfirmPassword" class="form-control form-control-lg" 
+        placeholder="Confirm Password" #ConfirmPassword="ngModel" [(ngModel)]="staffService.formData.confirmPassword" required
+        minlength="6">
+        <span *ngIf="ConfirmPassword.touched && ConfirmPassword.value != Password.value">
+            Password Must Match
+        </span>
+    </div>
+    <div class="form-group">
+        <button [disabled]="form.invalid || ConfirmPassword.value != Password.value" type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </div>
+</form>
