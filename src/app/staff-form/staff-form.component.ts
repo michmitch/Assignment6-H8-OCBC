@@ -32,6 +32,7 @@ export class StaffFormComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        alert(err.error.message);
         
       }
     );
@@ -46,6 +47,7 @@ export class StaffFormComponent implements OnInit {
       },
       (err) => {
         console.log(err);
+        alert(err.error.message);
         
       }
     );
